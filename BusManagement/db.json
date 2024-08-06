@@ -1,0 +1,14 @@
+{
+  "busd": [
+    {
+      "id": "34",
+      "busStop": "adhi",
+      "busTime": "05"
+    },
+    {
+      "id": "52",
+      "busStop": "adhi",
+      "busTime": "322"
+    }
+  ]
+}

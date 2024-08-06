@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+</head>
+<body>
+  <h1 style="display: flex; justify-content: center;"> Bus Management System</h1>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <form #myForm="ngForm">
+          <div class="form-group">
+            <label for="Bus Number">Bus Number</label>
+            <input type="text" class="form-control" name="busId" #busId="ngModel" ngModel required pattern="[0-9]+" />
+          </div>
+
+          <div *ngIf="busId.touched">
+            <div *ngIf="busId.errors?.['required']">
+              <b style="color: red;">Bus Number Required</b>
+            </div>
+            <div *ngIf="busId.errors?.['pattern']">
+              <font color="red"><b>Invalid Bus Number Id</b></font>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Bus Stop"> Bus Stop</label>
+            <input type="text" class="form-control" name="busStop" #busStop="ngModel" ngModel required
+              pattern="[a-z]+" />
+
+            <div *ngIf="busStop.touched">
+              <div *ngIf="busStop.errors?.['required']">
+                <b style="color: red;">Bus Stop Required</b>
+              </div>
+              <div *ngIf="busStop.errors?.['pattern']">
+                <font color="red"><b>Invalid Bus Stop</b></font>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="Bus Time">Bus Time</label>
+            <input type="text" class="form-control" name="busTime" #busTime="ngModel" ngModel required
+              pattern="[0-9]+" />
+
+            <div *ngIf="busTime.touched">
+              <div *ngIf="busTime.errors?.['required']">
+                <b style="color: red;">Bus Time Required</b>
+              </div>
+              <div *ngIf="busTime.errors?.['pattern']">
+                <font color="red"><b>Invalid Bus Time</b></font>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-success" (click)="insertBus(myForm.value)" >Insert </button>&nbsp;&nbsp;
+          <button class="btn btn-primary" (click)="updateBus(myForm.value)">Update </button>&nbsp;&nbsp;
+          <button class="btn btn-danger" (click)="deleteBus(myForm.value)">Delete</button>&nbsp;&nbsp;
+          <button class="btn btn-warning" (click)="findBus(myForm.value)"> Find </button>&nbsp;&nbsp;
+          <button class="btn btn-info" (click)="findAllBus()">Find All</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+  <!-- <h3> {{result}} </h3>
+  {{bus.id}} - {{bus.busStop}} - {{bus.busTime}} 
+  <br> -->
+                <h3> {{result}} </h3>
+                {{bus.id}} - {{bus.busStop}} - {{bus.busTime}} 
+                <div style="width: 100%;" *ngIf="flag">
+                  <table width="80%" align="center" class="table table-borderd">
+                   <tr><th>Bus Number</th><th>Bus Stop</th><th>Bus Stop</th></tr> 
+                    <tr *ngFor="let bus of busArr">
+                        <td> {{bus.id}} </td><td> {{bus.busStop}} </td><td> {{bus.busTime}} </td>
+                    </tr>
+                 </table>
+                 </div>
+</body>
+</html>
+
